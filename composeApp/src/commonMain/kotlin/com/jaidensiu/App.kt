@@ -3,12 +3,15 @@ package com.jaidensiu
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -29,6 +32,19 @@ fun App() {
                 .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
+            Text(text = "Saved Locations")
+            SavedLocationItem(
+                name = "airbnb",
+                city = "San Francisco",
+                state = "California",
+                onClick = {}
+            )
+            SavedLocationItem(
+                name = "office",
+                city = "San Ramon",
+                state = "California",
+                onClick = {}
+            )
             Button(onClick = { showContent = !showContent }) {
                 Text("Click me!")
             }
@@ -39,6 +55,25 @@ fun App() {
                     Text("Compose: $greeting")
                 }
             }
+        }
+    }
+}
+
+@Composable
+fun SavedLocationItem(
+    name: String,
+    city: String,
+    state: String,
+    onClick: () -> Unit
+) {
+    Row(modifier = Modifier.fillMaxWidth()) {
+        Column {
+            Text(text = name)
+            Text(text = "$city, $state")
+        }
+        Spacer(modifier = Modifier.weight(weight = 1f))
+        TextButton(onClick = onClick) {
+            Text(text = "Travel to")
         }
     }
 }
